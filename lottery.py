@@ -1,6 +1,6 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-import re
+import random
 
 html = urlopen("https://dhlottery.co.kr/gameResult.do?method=statByNumber")
 bsObject = BeautifulSoup(html, "html.parser")
@@ -23,6 +23,13 @@ most_high = sorted_Pop[:6]
 most_low = sorted_Pop[-6:]
 middle = sorted_Pop[ (int(len(sorted_Pop)/2)) - 3 : (int(len(sorted_Pop)/2)) + 3 ]
 
-print(most_high)
-print(most_low)
-print(middle)
+print("most high :", most_high)
+print("most low :", most_low)
+
+random_seq = most_high + most_low
+random.shuffle(random_seq)
+
+random_seq = random_seq[:6]
+random_seq.sort()
+
+print("shuffled :", random_seq)
